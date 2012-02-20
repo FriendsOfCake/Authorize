@@ -3,7 +3,7 @@ h1. Authorize plugin
 Plugin containing some authorize classes for AuthComponent.
 
 Current classes:
-* AclAuthenticate, row based Acl
+* AclAuthorize, row based Acl. To use together with AclBehavior created acos
 
 h2. Requirements
 
