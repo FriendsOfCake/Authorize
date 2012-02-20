@@ -42,7 +42,6 @@ Setup the authorize class
 
 Example:
 <pre><code>
-<?php
     //in $components
     public $components = array(
         'Auth' => array(
@@ -52,13 +51,11 @@ Example:
             )
         )
     );
-
     //Or in beforeFilter()
     $this->Auth->authorize = array(
         'Controller',
         'Authorize.Acl' => array('actionPath' => 'Models/')
     );
-?>
 </code></pre>
 In the above example ``ControllerAuthorize`` is checked first. If your ``Controller::isAuthorized()`` returns
 true on admin routing, AclAuthorize will only be checked for non-admin urls.
