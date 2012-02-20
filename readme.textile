@@ -44,13 +44,24 @@ Example:
 <pre><code>
     //in $components
     public $components = array(
-        'Auth' => array('authorize' => 'Authorize.Acl')
+        'Auth' => array(
+            'authorize' => array(
+                'Controller',
+                'Authorize.Acl' => array('actionPath' => 'Models/')
+            )
+        )
     );
 
     //Or in beforeFilter()
-    $this->Auth->authorize = 'Authorize.Acl';
+    $this->Auth->authorize = array(
+        'Controller',
+        'Authorize.Acl' => array('actionPath' => 'Models/')
+    );
 
 </code></pre>
+In the above example ``ControllerAuthorize`` is checked first. If your ``Controller::isAuthorized()`` returns
+true on admin routing, AclAuthorize will only be checked for non-admin urls.
+Also you need to set ``actionPath`` in a similar way which is used with Actions- and CrudAuthorize.
 
 h2. License
 
