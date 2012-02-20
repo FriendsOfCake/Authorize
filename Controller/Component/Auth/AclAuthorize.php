@@ -91,12 +91,9 @@ class AclAuthorize extends BaseAuthorize {
 		if (empty($request->params['pass'][0])) {
 			return false;
 		}
-		$object = $this->_getModel();
-		$acoNode = $this->_getAco($object, $request->params['pass'][0]);
-		if (!$acoNode) {
-			return false;
-		}
 		$user = array($this->settings['userModel'] => $user);
+		$acoNode = $this->_getAco($request->params['pass'][0]);
+
 		$Acl = $this->_Collection->load('Acl');
 		return $Acl->check(
 			$user,
@@ -105,23 +102,9 @@ class AclAuthorize extends BaseAuthorize {
 		);
 	}
 
-	protected function _getModel() {
+	protected function _getAco($id) {
 		$modelClass = $this->_Controller->modelClass;
-		return $this->_Controller->{$modelClass};
+		return array('model' => $modelClass, 'foreign_key' => $id);
 	}
 
-	protected function _getAco($object, $id) {
-		if (!$object->Behaviors->attached('Acl')) {
-			return false;
-		}
-		$tmp = $object->id;
-		$object->id = $id;
-		try {
-			$aco = $object->node(null, 'Aco');
-		} catch (CakeException $e) {
-			return false;
-		}
-		$object->id = $tmp;
-		return $aco[0]['Aco'];
-	}
 }

@@ -25,10 +25,8 @@ App::uses('CakeResponse', 'Network');
 
 class TestAclAuthorize extends AclAuthorize {
 
-	function _getModel() {}
-
-	function _getAco() {
-		return 'Post.1';
+	protected function _getAco($id) {
+		return array('model' => 'Post', 'foreign_key' => $id);
 	}
 
 }
@@ -90,7 +88,7 @@ class AclAuthorizeTest extends CakeTestCase {
 		$request = new CakeRequest('posts/view/1', false);
 		$request->addParams(array(
 			'controller' => 'posts',
-			'action' => 'index',
+			'action' => 'view',
 			'pass' => array(1)
 		));
 		$user = array('User' => array('user' => 'mark'));
@@ -98,7 +96,7 @@ class AclAuthorizeTest extends CakeTestCase {
 		$this->_mockAcl();
 		$this->Acl->expects($this->once())
 			->method('check')
-			->with($user, 'Post.1', 'read')
+			->with($user, array('model' => 'Post', 'foreign_key' => 1), 'read')
 			->will($this->returnValue(true));
 
 		$this->assertTrue($this->auth->authorize($user['User'], $request));
@@ -121,7 +119,7 @@ class AclAuthorizeTest extends CakeTestCase {
 		$this->_mockAcl();
 		$this->Acl->expects($this->once())
 			->method('check')
-			->with($user, 'Post.1', 'update')
+			->with($user, array('model' => 'Post', 'foreign_key' => 1), 'update')
 			->will($this->returnValue(false));
 
 		$this->assertFalse($this->auth->authorize($user['User'], $request));
