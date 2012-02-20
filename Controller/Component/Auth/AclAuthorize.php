@@ -102,6 +102,12 @@ class AclAuthorize extends BaseAuthorize {
 		);
 	}
 
+/**
+ * Builds acoNode for Acl->check()
+ *
+ * @param integer $id The passed id param
+ * @return array
+ */
 	protected function _getAco($id) {
 		$modelClass = $this->_Controller->modelClass;
 		return array('model' => $modelClass, 'foreign_key' => $id);
