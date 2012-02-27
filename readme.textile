@@ -7,7 +7,7 @@ Current classes:
 
 h2. Requirements
 
-* PHP 5.3
+* PHP 5.2.8
 * CakePHP 2.x
 
 h2. Installation
