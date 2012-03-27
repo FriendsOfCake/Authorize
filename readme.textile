@@ -77,8 +77,8 @@ AclComponent ``$settings['habtm']``, and have it loaded before any Auth configur
     //in $components
     public $components = array(
         'Acl' => array('habtm' => array(
-            'joinModel' => 'Plugin.GroupsUser',
-            //etc. see the HabtmDbAcl class for all configs
+            'userModel' => 'Users.User',
+            'groupAlias' => 'Group'
         )),
         'Auth' => array(
             //your Auth settings

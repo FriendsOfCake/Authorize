@@ -14,6 +14,11 @@
 App::uses('ComponentCollection', 'Controller');
 App::uses('HabtmDbAcl', 'Authorize.Controller/Component/Acl');
 
+class Employee extends CakeTestModel {
+
+	public $hasAndBelongsToMany = array('Department' => array('with' => 'Membership'));
+
+}
 /**
  * Test case for AclComponent using the HabtmDbAcl implementation.
  *
@@ -40,10 +45,8 @@ class HabtmDbAclTest extends CakeTestCase {
 		Configure::write('Acl.database', 'test');
 		$Collection = new ComponentCollection();
 		$this->Acl = $Collection->load('Acl', array('habtm' => array(
-			'groupModel' => 'Department',
-			'joinModel' => 'Membership',
-			'userField' => 'employee_id',
-			'groupField' => 'department_id',
+			'userModel' => 'Employee',
+			'groupAlias' => 'Department',
 		)));
 		$this->_setPermissions();
 	}

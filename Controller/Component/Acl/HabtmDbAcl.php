@@ -8,10 +8,8 @@ App::uses('DbAcl', 'Controller/Component/Acl');
 class HabtmDbAcl extends DbAcl {
 
 	public $settings = array(
-		'groupModel' => 'Group',
-		'joinModel' => 'GroupsUser',
-		'userField' => 'user_id',
-		'groupField' => 'group_id',
+		'userModel' => 'User',
+		'groupAlias' => 'Group',
 	);
 
 /**
@@ -45,6 +43,12 @@ class HabtmDbAcl extends DbAcl {
 		}
 		extract($this->settings);
 
+		$User = ClassRegistry::init($userModel);
+		list($plugin, $groupAlias) = pluginSplit($groupAlias);
+		list($joinModel) = $User->joinModel($User->hasAndBelongsToMany[$groupAlias]['with']);
+		$userField = $User->hasAndBelongsToMany[$groupAlias]['foreignKey'];
+		$groupField = $User->hasAndBelongsToMany[$groupAlias]['associationForeignKey'];
+
 		$node = $this->Acl->Aro->node($aro);
 		$userId = Set::extract('0.Aro.foreign_key', $node);
 		$groupIDs = ClassRegistry::init($joinModel)->find('list', array(
@@ -53,7 +57,7 @@ class HabtmDbAcl extends DbAcl {
 			'recursive' => -1
 		));
 		foreach ((array)$groupIDs as $groupID) {
-			$aro = array('model' => $groupModel, 'foreign_key' => $groupID);
+			$aro = array('model' => $groupAlias, 'foreign_key' => $groupID);
 			$allowed = parent::check($aro, $aco, $action);
 			if ($allowed) {
 				return true;
