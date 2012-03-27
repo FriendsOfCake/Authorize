@@ -3,7 +3,8 @@ h1. Authorize plugin
 Plugin containing some authorize classes for AuthComponent.
 
 Current classes:
-* AclAuthorize, row based Acl. To use together with AclBehavior created acos
+* AclAuthorize, row based Acl. AuthComponent adapter, to use together with AclBehavior created acos
+* HabtmDbAcl. AclComponent adapter, for User habtm Group Acl. (for database acl only)
 
 h2. Requirements
 
@@ -36,7 +37,7 @@ h2. Usage
 
 In app/Config/bootstrap.php add: CakePlugin::load('Authorize');
 
-h2. Configuration:
+h2. Configuration AclAuthorize:
 
 Setup the authorize class
 
@@ -60,6 +61,30 @@ Example:
 In the above example `ControllerAuthorize` is checked first. If your `Controller::isAuthorized()`
 returns true on admin routing, AclAuthorize will only be checked for non-admin urls.
 Also you need to set `actionPath` in a similar way which is used with Actions- and CrudAuthorize.
+
+h2. Configuration HabtmDbAcl:
+
+Setup the HabtmDbAcl adapter
+
+in app/Config/core.php
+<pre><code>
+Configure::write('Acl.classname', 'Authorize.HabtmDbAcl');
+</code></pre>
+
+Make sure if you need to alter settings for HabtmDbAcl, you pass those to
+AclComponent ``$settings['habtm']``, and have it loaded before any Auth configuration.
+<pre><code>
+    //in $components
+    public $components = array(
+        'Acl' => array('habtm' => array(
+            'joinModel' => 'Plugin.GroupsUser',
+            //etc. see the HabtmDbAcl class for all configs
+        )),
+        'Auth' => array(
+            //your Auth settings
+        )
+    );
+</code></pre>
 
 h2. License
 
