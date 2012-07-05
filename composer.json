@@ -1,0 +1,11 @@
+{
+	"name": "ceeram/Authorize",
+	"type": "cakephp-plugin",
+        "description": "CakePHP authorize classes for AuthComponent.",
+	"homepage": "http://github.com/ceeram/Authorize",
+	"license": "MIT",
+	"require": {
+		"php": ">=5.3.0",
+		"composer/installers": "*"
+	}
+}
