@@ -56,7 +56,7 @@ class AroFixture extends CakeTestFixture {
 		array('parent_id' => '1', 'model' => 'Department', 'foreign_key' => '1', 'alias' => '', 'lft' => 2, 'rght' => 3),
 		array('parent_id' => '1', 'model' => 'Department', 'foreign_key' => '2', 'alias' => '', 'lft' => 4, 'rght' => 7),
 		array('parent_id' => '1', 'model' => 'Department', 'foreign_key' => '3', 'alias' => '', 'lft' => 8, 'rght' => 9),
-		array('parent_id' => '1', 'model' => 'Department', 'foreign_key' => '4', 'alias' => '', 'lft' => 10, 'rght' =>11),
+		array('parent_id' => '1', 'model' => 'Department', 'foreign_key' => '4', 'alias' => '', 'lft' => 10, 'rght' => 11),
 		array('parent_id' => '1', 'model' => 'Department', 'foreign_key' => '5', 'alias' => '', 'lft' => 12, 'rght' => 13),
 		array('parent_id' => '3', 'model' => 'Employee', 'foreign_key' => '1', 'alias' => '', 'lft' => 5, 'rght' => 6),
 		array('parent_id' => '1', 'model' => 'Employee', 'foreign_key' => '2', 'alias' => '', 'lft' => 14, 'rght' => 15),

@@ -2,7 +2,8 @@
 App::uses('DbAcl', 'Controller/Component/Acl');
 
 /**
- * HabtmDbAcl implements an ACL control system in the database like DbAcl with User habtm Group checks
+ * HabtmDbAcl implements an ACL control system in the database like DbAcl with
+ * User habtm Group checks
  *
  */
 class HabtmDbAcl extends DbAcl {
@@ -25,6 +26,7 @@ class HabtmDbAcl extends DbAcl {
 		}
 		$this->Acl = $component;
 	}
+
 /**
  * Checks if the given $aro has access to action $action in $aco
  * Check returns true once permissions are found, in following order:

@@ -126,7 +126,6 @@ class AclAuthorizeTest extends CakeTestCase {
 		$this->assertFalse($this->auth->authorize($user['User'], $request));
 	}
 
-
 /**
  * test getting actionMap
  *
