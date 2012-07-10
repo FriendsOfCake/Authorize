@@ -73,7 +73,6 @@ class HabtmDbAclTest extends CakeTestCase {
 		$this->Acl->allow(array('Department' => array('id' => 3)), 'Controllers/Users/Users', '*');
 	}
 
-
 /**
  * testCheck method
  *
@@ -99,4 +98,5 @@ class HabtmDbAclTest extends CakeTestCase {
 
 		$this->assertFalse($this->Acl->check(array('Employee' => array('id' => 2)), array('model' => 'Employee', 'foreign_key' => 3), 'read'));
 	}
+
 }

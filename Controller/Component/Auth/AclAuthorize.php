@@ -17,14 +17,17 @@ App::uses('BaseAuthorize', 'Controller/Component/Auth');
 App::uses('Router', 'Routing');
 
 /**
- * An authorization adapter for AuthComponent.  Provides the ability to authorize using row based CRUD mappings.
- * CRUD mappings allow you to translate controller actions into *C*reate *R*ead *U*pdate *D*elete actions.
+ * An authorization adapter for AuthComponent.  Provides the ability to
+ * authorize using row based CRUD mappings. CRUD mappings allow you to translate
+ * controller actions into *C*reate *R*ead *U*pdate *D*elete actions.
  * This is then checked in the AclComponent as specific permissions.
  *
- * For example, taking `/posts/view/1` as the current request.  The default mapping for `view`, is a `read` permission
- * check. The Acl check would then be for the Post record with id=1 with the `read` permission.  This allows you
- * to create permission systems that focus more on what is being done to which record, rather than the specific actions
- * being visited, or only what is being done to resources.
+ * For example, taking `/posts/view/1` as the current request.  The default
+ * mapping for `view`, is a `read` permission check. The Acl check would then be
+ * for the Post record with id=1 with the `read` permission.  This allows you to
+ * create permission systems that focus more on what is being done to which
+ * record, rather than the specific actions being visited, or only what is being
+ * done to resources.
  *
  * @package       Cake.Controller.Component.Auth
  * @since 2.0
@@ -34,10 +37,13 @@ App::uses('Router', 'Routing');
 class AclAuthorize extends BaseAuthorize {
 
 /**
- * Sets up additional actionMap values that match the configured `Routing.prefixes`.
+ * Sets up additional actionMap values that match the configured
+ * `Routing.prefixes`.
  *
- * @param ComponentCollection $collection The component collection from the controller.
- * @param string $settings An array of settings.  This class does not use any settings.
+ * @param ComponentCollection $collection The component collection from the
+ * controller.
+ * @param string $settings An array of settings.  This class does not use any
+ * settings.
  */
 	public function __construct(ComponentCollection $collection, $settings = array()) {
 		parent::__construct($collection, $settings);
@@ -78,6 +84,7 @@ class AclAuthorize extends BaseAuthorize {
  * @param array $user The user to authorize
  * @param CakeRequest $request The request needing authorization.
  * @return boolean
+ * @throws CakeException
  */
 	public function authorize($user, CakeRequest $request) {
 		if (!isset($this->settings['actionMap'][$request->params['action']])) {
