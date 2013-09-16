@@ -5,6 +5,8 @@ App::uses('DbAcl', 'Controller/Component/Acl');
  * HabtmDbAcl implements an ACL control system in the database like DbAcl with
  * User habtm Group checks
  *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
  */
 class HabtmDbAcl extends DbAcl {
 
