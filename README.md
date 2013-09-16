@@ -1,5 +1,8 @@
 # Authorize plugin
 
+[![Build Status](https://travis-ci.org/FriendsOfCake/Authorize.png?branch=master)](https://travis-ci.org/FriendsOfCake/Authorize)
+[![Coverage Status](https://coveralls.io/repos/FriendsOfCake/Authorize/badge.png)](https://coveralls.io/r/FriendsOfCake/Authorize)
+
 Plugin containing some authorize classes for AuthComponent.
 
 Current classes:
